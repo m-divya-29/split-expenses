@@ -64,7 +64,7 @@ export default function People({
 
   return (
     <div class="">
-      <h3>People</h3>
+      <h3>People 👥</h3>
       <ul style={{justifyContent: "left", textAlign: "left"}}>
         {people.map((p) => {
           const count = countInvolvement(p);

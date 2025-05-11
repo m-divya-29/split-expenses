@@ -6,7 +6,7 @@ export default function Owes({ transactions, owes, setOwes }) {
     const newOwes = {};
     for (const t of transactions) {
       const { paidBy, amount, splitBetween } = t;
-      const eachPays = amount / splitBetween.length;
+      const eachPays = Math.round((amount / splitBetween.length) * 100) / 100;
       for (const payer of splitBetween) {
         if (payer == paidBy) continue;
 
@@ -43,12 +43,14 @@ export default function Owes({ transactions, owes, setOwes }) {
   }
   return (
     <div class="p-4 ">
-      <button
-        class="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-400"
-        onClick={calculateOwes}
-      >
-        Calculate
-      </button>
+      {transactions.length > 0 && (
+        <button
+          class="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-400"
+          onClick={calculateOwes}
+        >
+          Calculate
+        </button>
+      )}
 
       {owes && Object.keys(owes).length > 0 ? (
         <>

@@ -20,7 +20,7 @@ function App() {
     splitBetween: [],
   };
   function clearAllTxns() {
-    localStorage.removeItem(TRANSACTIONS_STR);
+    localStorage.setItem(TRANSACTIONS_STR, [newTransaction]);
     localStorage.removeItem("owes");
     setTransactions([newTransaction]);
     setOwes(null);
@@ -50,20 +50,8 @@ function App() {
         textAlign: "center",
       }}
     >
-      <div class="p-4" style={{ display: "flex" }}>
-        <People
-          people={people}
-          setPeople={setPeople}
-          transactions={transactions}
-          setTransactions={setTransactions}
-        />
-      </div>
-      <div
-        class="p-4"
-        style={{
-        }}
-      >
-        <h2>Add Expense</h2>
+      <div class="p-4" style={{}}>
+        <h2>Expenses 💰</h2>
         <DynamicList
           transactions={transactions}
           setTransactions={setTransactions}
@@ -79,6 +67,12 @@ function App() {
           setOwes={setOwes}
         />
       </div>
+      <People
+        people={people}
+        setPeople={setPeople}
+        transactions={transactions}
+        setTransactions={setTransactions}
+      />
     </div>
   );
 }
