@@ -59,6 +59,12 @@ export default function DynamicList({
           {transactions.length === 0 && (
             <p className="text-gray-700 leading-relaxed">
               No expenses added yet.
+              <button
+                className="px-3 py-1 bg-blue-600 text-white rounded hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-400 text-sm"
+                onClick={() => addNewTransaction()}
+              >
+                Add
+              </button>
             </p>
           )}
           {transactions.map((txn, index) => (
@@ -139,16 +145,6 @@ export default function DynamicList({
               </button>
             </div>
           ))}
-        </div>
-        <div className="mt-4">
-          {transactions.length > 0 && (
-            <button
-              className="px-4 py-2 bg-red-600 text-white rounded hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-red-400"
-              onClick={() => clearAllTxns()}
-            >
-              Clear All
-            </button>
-          )}
         </div>
       </div>
     </div>

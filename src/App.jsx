@@ -46,11 +46,11 @@ function App() {
         display: "flex",
         justifyContent: "left",
         alignItems: "center",
-        flexDirection: "row",
+        flexDirection: "column", // Changed to column
         textAlign: "center",
       }}
     >
-      <div class="p-4" style={{}}>
+      <div className="p-4" style={{}}>
         <h2>Expenses 💰</h2>
         <DynamicList
           transactions={transactions}
@@ -58,14 +58,25 @@ function App() {
           clearAll={clearAllTxns}
           people={people}
           setPeople={setPeople}
-          class="p-4"
+          className="p-4"
         />
         <Owes
-          class="p-4"
+          className="p-4"
           transactions={transactions}
           owes={owes}
           setOwes={setOwes}
         />
+      </div>
+      <div className="mt-4">
+        {(transactions.length > 0 ||
+          (owes && Object.keys(owes).length > 0)) && (
+          <button
+            className="px-4 py-2 bg-red-600 text-white rounded hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-red-400"
+            onClick={() => clearAllTxns()}
+          >
+            Clear All
+          </button>
+        )}
       </div>
       <People
         people={people}
