@@ -1,0 +1,20 @@
+.info {
+  color: orange;
+}
+
+.people-ul {
+  list-style: none;
+}
+.input-error {
+  border: 1px solid red;
+  background-color: #ffe6e6;
+}
+.select-error {
+  border: 1px solid red;
+  background-color: #ffe6e6;
+  color: black;
+}
+
+select option {
+  background-color: white;  /* Ensure options have a white background */
+}
