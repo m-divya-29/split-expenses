@@ -63,13 +63,13 @@ export default function People({
   }
 
   return (
-    <div class="">
+    <div>
       <h3>People 👥</h3>
-      <ul style={{justifyContent: "left", textAlign: "left"}}>
+      <ul style={{ justifyContent: "left", textAlign: "left" }}>
         {people.map((p) => {
           const count = countInvolvement(p);
           return (
-            <li  key={p}>
+            <li key={p}>
               <strong>{p} </strong>
               {count > 0 && (
                 <span className="info">
@@ -77,7 +77,7 @@ export default function People({
                 </span>
               )}
               <button
-                class="px-4 py-2 bg-yellow-600 text-white rounded hover:bg-yellow-700 focus:outline-none focus:ring-2 focus:ring-yellow-400"
+                class="px-2 py-0.5 border border-blue-600 text-blue-600 rounded-md text-sm hover:bg-blue-600 hover:text-white transition"
                 onClick={() => removePerson(p)}
               >
                 -
@@ -90,11 +90,13 @@ export default function People({
         type="text"
         value={newPerson}
         onChange={(e) => setNewPerson(e.target.value)}
+        onKeyDown={(e) => {
+          if (e.key === "Enter") addPerson();
+        }}
         placeholder="Enter name"
-         
       />
       <button
-        class="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-400"
+        className="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-400"
         onClick={addPerson}
       >
         Add Person

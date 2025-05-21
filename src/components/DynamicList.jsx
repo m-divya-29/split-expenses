@@ -16,7 +16,6 @@ export default function DynamicList({
     const newTxns = [...transactions];
     newTxns[index][field] = value;
     setTransactions(newTxns); // since newInputs is a new object, React triggers a re-render.
-    console.log(newTxns);
     localStorage.setItem(TRANSACTIONS_STR, JSON.stringify(transactions));
   }
 
@@ -35,7 +34,7 @@ export default function DynamicList({
     const newTxns = [
       ...transactions,
       {
-        description: "",
+        description: "Transaction " + (transactions.length + 1),
         amount: "",
         paidBy: "",
         splitBetween: "",
@@ -79,16 +78,17 @@ export default function DynamicList({
                 onChange={(e) =>
                   handleTransactionChange(index, "description", e.target.value)
                 }
-                className="flex-grow rounded border-gray-300 shadow-sm focus:ring focus:ring-blue-200 focus:border-blue-300"
+                className="border px-2 py-1 rounded"
               />
               <input
                 type="number"
+                min="0"
                 placeholder="Amount"
                 value={txn.amount}
                 onChange={(e) =>
                   handleTransactionChange(index, "amount", e.target.value)
                 }
-                className={`w-24 rounded border-gray-300 shadow-sm focus:ring focus:ring-blue-200 focus:border-blue-300 ${
+                className={`border px-2 py-1 rounded ${
                   !txn.amount ? "input-error" : ""
                 }`}
               />
@@ -97,7 +97,7 @@ export default function DynamicList({
                 onChange={(e) =>
                   handleTransactionChange(index, "paidBy", e.target.value)
                 }
-                className={`w-32 rounded border-gray-300 shadow-sm focus:ring focus:ring-blue-200 focus:border-blue-300 ${
+                className={`border px-2 py-1 rounded ${
                   !txn.paidBy || txn.paidBy === "" ? "select-error" : ""
                 }`}
               >
@@ -123,7 +123,7 @@ export default function DynamicList({
                           type="checkbox"
                           checked={txn.splitBetween?.includes(person) || false}
                           onChange={() => toggleSplit(index, person)}
-                          className="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 rounded"
+                          className="form-checkbox h-4 w-4 text-blue-600 border-gray-300 rounded focus:ring-blue-500"
                         />
                         {person}
                       </label>
@@ -135,13 +135,13 @@ export default function DynamicList({
                 className="px-3 py-1 bg-blue-600 text-white rounded hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-400 text-sm"
                 onClick={() => addNewTransaction()}
               >
-                Add
+                +
               </button>
               <button
                 className="px-3 py-1 bg-red-600 text-white rounded hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-red-400 text-sm"
                 onClick={() => removeTransaction(index)}
               >
-                Remove
+                -
               </button>
             </div>
           ))}
